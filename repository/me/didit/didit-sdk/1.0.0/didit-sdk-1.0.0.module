@@ -35,11 +35,11 @@
         {
           "name": "didit-sdk-1.0.0.aar",
           "url": "didit-sdk-1.0.0.aar",
-          "size": 4258079,
-          "sha512": "792878b9e38ea3af52a4642132f215a9500550ace6756b78140f70a179750811acca61ce1bb9937de5385bdf154cee653e0c5315291368c810324452de4b5563",
-          "sha256": "30f96df7f4bc0899c93376a14a003370237549afe6f7e618ad124b8c2b5d092d",
-          "sha1": "3d20a1b2893bc63c709e8bd6f5f9baaad4b66a75",
-          "md5": "9faa93267ec025d1e0baeedcb67bbba1"
+          "size": 4257298,
+          "sha512": "f6102f76587e2bf676e6c89473b28f76bbb4712118748a246cacc05bc38e4512090c222674d9c650cd44c304f6b01466f978ddb2e415307a5f096e2c5e242fa6",
+          "sha256": "0fa82766914dba4cd3ace952033d3d655b74883d1d6b573c38cc431c872f347c",
+          "sha1": "9b2c9352b6b829894b2af5c36a668fadb473eb73",
+          "md5": "8aa4ace0df4c61825bd4c9981de5ffcc"
         }
       ]
     },
@@ -266,11 +266,11 @@
         {
           "name": "didit-sdk-1.0.0.aar",
           "url": "didit-sdk-1.0.0.aar",
-          "size": 4258079,
-          "sha512": "792878b9e38ea3af52a4642132f215a9500550ace6756b78140f70a179750811acca61ce1bb9937de5385bdf154cee653e0c5315291368c810324452de4b5563",
-          "sha256": "30f96df7f4bc0899c93376a14a003370237549afe6f7e618ad124b8c2b5d092d",
-          "sha1": "3d20a1b2893bc63c709e8bd6f5f9baaad4b66a75",
-          "md5": "9faa93267ec025d1e0baeedcb67bbba1"
+          "size": 4257298,
+          "sha512": "f6102f76587e2bf676e6c89473b28f76bbb4712118748a246cacc05bc38e4512090c222674d9c650cd44c304f6b01466f978ddb2e415307a5f096e2c5e242fa6",
+          "sha256": "0fa82766914dba4cd3ace952033d3d655b74883d1d6b573c38cc431c872f347c",
+          "sha1": "9b2c9352b6b829894b2af5c36a668fadb473eb73",
+          "md5": "8aa4ace0df4c61825bd4c9981de5ffcc"
         }
       ]
     }
