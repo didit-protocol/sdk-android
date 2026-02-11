@@ -1,0 +1,9 @@
+.DS_Store
+*.iml
+.idea/
+.gradle/
+local.properties
+build/
+
+# Don't ignore the repository directory — that's the whole point!
+# repository/ is tracked and contains the published AAR + POM.
