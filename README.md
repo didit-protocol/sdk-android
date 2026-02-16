@@ -183,7 +183,6 @@ import me.didit.sdk.core.localization.SupportedLanguage
 
 val configuration = Configuration(
     languageLocale = SupportedLanguage.SPANISH,  // Force Spanish language
-    customIntroScreen = false,                    // Use SDK's intro screen
     fontFamily = "my_custom_font",                // Custom font (must be in res/font/)
     loggingEnabled = true                         // Enable debug logging
 )
@@ -201,7 +200,6 @@ DiditSdk.startVerification(
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `languageLocale` | `SupportedLanguage?` | Device locale | Force a specific language |
-| `customIntroScreen` | `Boolean` | `false` | Skip SDK's intro screen |
 | `fontFamily` | `String?` | System font | Custom font resource name (from `res/font/`) |
 | `loggingEnabled` | `Boolean` | `false` | Enable SDK debug logging |
 
