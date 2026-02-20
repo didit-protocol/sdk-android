@@ -57,7 +57,7 @@ Add the SDK dependency to your app's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("me.didit:didit-sdk:3.2.0")
+    implementation("me.didit:didit-sdk:3.2.1")
 }
 ```
 
@@ -65,7 +65,7 @@ Or if using `build.gradle` (Groovy):
 
 ```groovy
 dependencies {
-    implementation "me.didit:didit-sdk:3.2.0"
+    implementation "me.didit:didit-sdk:3.2.1"
 }
 ```
 
