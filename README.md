@@ -67,7 +67,7 @@ Add the SDK dependency to your app's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("me.didit:didit-sdk:3.3.2")
+    implementation("me.didit:didit-sdk:3.4.3")
 }
 ```
 
@@ -75,7 +75,7 @@ Or if using `build.gradle` (Groovy):
 
 ```groovy
 dependencies {
-    implementation "me.didit:didit-sdk:3.3.2"
+    implementation "me.didit:didit-sdk:3.4.3"
 }
 ```
 
@@ -253,6 +253,8 @@ val config = Configuration(languageLocale = SupportedLanguage.FRENCH)
 | Japanese | `JAPANESE` | Chinese (Simplified) | `CHINESE_SIMPLIFIED` |
 | Georgian | `GEORGIAN` | Chinese (Traditional) | `CHINESE_TRADITIONAL` |
 | Montenegrin | `MONTENEGRIN` | Somali | `SOMALI` |
+| Albanian | `ALBANIAN` | Bosnian | `BOSNIAN` |
+| Kyrgyz | `KYRGYZ` | | |
 
 ## Advanced Options
 
