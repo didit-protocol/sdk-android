@@ -215,7 +215,7 @@ DiditSdk.startVerification(
 
 ### Language Settings
 
-The SDK supports 40+ languages. If no language is specified, the SDK uses the device locale with English fallback.
+The SDK supports 53 languages. If no language is specified, the SDK uses the device locale with English fallback.
 
 ```kotlin
 // Use device locale (default)
@@ -228,33 +228,34 @@ val config = Configuration(languageLocale = SupportedLanguage.FRENCH)
 #### Supported Languages
 
 | Language | Value | Language | Value |
-|----------|-------|----------|-------|
-| English | `ENGLISH` | Korean | `KOREAN` |
-| Arabic | `ARABIC` | Lithuanian | `LITHUANIAN` |
-| Bulgarian | `BULGARIAN` | Latvian | `LATVIAN` |
-| Bengali | `BENGALI` | Macedonian | `MACEDONIAN` |
+|----------|------|----------|------|
+| Albanian | `ALBANIAN` | Kazakh | `KAZAKH` |
+| Arabic | `ARABIC` | Korean | `KOREAN` |
+| Armenian | `ARMENIAN` | Kyrgyz | `KYRGYZ` |
+| Bengali | `BENGALI` | Latvian | `LATVIAN` |
+| Bosnian | `BOSNIAN` | Lithuanian | `LITHUANIAN` |
+| Bulgarian | `BULGARIAN` | Macedonian | `MACEDONIAN` |
 | Catalan | `CATALAN` | Malay | `MALAY` |
-| Czech | `CZECH` | Dutch | `DUTCH` |
-| Danish | `DANISH` | Norwegian | `NORWEGIAN` |
-| German | `GERMAN` | Polish | `POLISH` |
-| Greek | `GREEK` | Portuguese | `PORTUGUESE` |
-| Spanish | `SPANISH` | Portuguese (Brazil) | `PORTUGUESE_BRAZIL` |
-| Estonian | `ESTONIAN` | Romanian | `ROMANIAN` |
-| Persian | `PERSIAN` | Russian | `RUSSIAN` |
+| Chinese | `CHINESE` | Montenegrin | `MONTENEGRIN` |
+| Chinese (Simplified) | `CHINESE_SIMPLIFIED` | Norwegian | `NORWEGIAN` |
+| Chinese (Traditional) | `CHINESE_TRADITIONAL` | Persian | `PERSIAN` |
+| Croatian | `CROATIAN` | Polish | `POLISH` |
+| Czech | `CZECH` | Portuguese | `PORTUGUESE` |
+| Danish | `DANISH` | Portuguese (Brazil) | `PORTUGUESE_BRAZIL` |
+| Dutch | `DUTCH` | Romanian | `ROMANIAN` |
+| English | `ENGLISH` | Russian | `RUSSIAN` |
+| Estonian | `ESTONIAN` | Serbian | `SERBIAN` |
 | Finnish | `FINNISH` | Slovak | `SLOVAK` |
 | French | `FRENCH` | Slovenian | `SLOVENIAN` |
-| Hebrew | `HEBREW` | Serbian | `SERBIAN` |
-| Hindi | `HINDI` | Swedish | `SWEDISH` |
-| Croatian | `CROATIAN` | Thai | `THAI` |
-| Hungarian | `HUNGARIAN` | Turkish | `TURKISH` |
-| Armenian | `ARMENIAN` | Ukrainian | `UKRAINIAN` |
+| Georgian | `GEORGIAN` | Somali | `SOMALI` |
+| German | `GERMAN` | Spanish | `SPANISH` |
+| Greek | `GREEK` | Swedish | `SWEDISH` |
+| Hebrew | `HEBREW` | Thai | `THAI` |
+| Hindi | `HINDI` | Turkish | `TURKISH` |
+| Hungarian | `HUNGARIAN` | Ukrainian | `UKRAINIAN` |
 | Indonesian | `INDONESIAN` | Uzbek | `UZBEK` |
 | Italian | `ITALIAN` | Vietnamese | `VIETNAMESE` |
-| Japanese | `JAPANESE` | Chinese (Simplified) | `CHINESE_SIMPLIFIED` |
-| Georgian | `GEORGIAN` | Chinese (Traditional) | `CHINESE_TRADITIONAL` |
-| Montenegrin | `MONTENEGRIN` | Somali | `SOMALI` |
-| Albanian | `ALBANIAN` | Bosnian | `BOSNIAN` |
-| Kyrgyz | `KYRGYZ` | | |
+| Japanese | `JAPANESE` |  |  |
 
 ## Advanced Options
 
