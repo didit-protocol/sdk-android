@@ -67,7 +67,7 @@ Add the SDK dependency to your app's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("me.didit:didit-sdk:3.5.10")
+    implementation("me.didit:didit-sdk:4.0.1")
 }
 ```
 
@@ -75,9 +75,13 @@ Or if using `build.gradle` (Groovy):
 
 ```groovy
 dependencies {
-    implementation "me.didit:didit-sdk:3.5.10"
+    implementation "me.didit:didit-sdk:4.0.1"
 }
 ```
+
+> Starting with **4.0.0** the SDK ships as four separate artifacts
+> (`didit-sdk-core`, `didit-sdk-autodetection`, `didit-sdk-nfc`,
+> `didit-sdk`) so apps only pay the binary cost of features they use.
 
 ### Step 3: Add packaging exclusion
 
