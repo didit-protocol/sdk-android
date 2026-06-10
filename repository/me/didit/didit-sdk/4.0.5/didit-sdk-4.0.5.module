@@ -1,0 +1,118 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "me.didit",
+    "module": "didit-sdk",
+    "version": "4.0.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.6"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.0.5"
+          }
+        },
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-autodetection",
+          "version": {
+            "requires": "4.0.5"
+          }
+        },
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-nfc",
+          "version": {
+            "requires": "4.0.5"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-4.0.5.aar",
+          "url": "didit-sdk-4.0.5.aar",
+          "size": 1954,
+          "sha512": "99dace5b42e8a5a9688e1d9b97722682d6c0211ae87ece363678732994af8ba05bd2e14434824d84ddcd7e2670caa201d1dabb0091420666b93d1d1d98efa7cc",
+          "sha256": "5eb88546d17c4b9eeda35937130745fd4e7acd2f64910bc166b7a824cc101dfb",
+          "sha1": "ee0a4a701c14b1cd1f4c72c1473700b732e5e5b0",
+          "md5": "3eb95e83831bd35ff15bb5d867a8d627"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.0.5"
+          }
+        },
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-autodetection",
+          "version": {
+            "requires": "4.0.5"
+          }
+        },
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-nfc",
+          "version": {
+            "requires": "4.0.5"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-4.0.5.aar",
+          "url": "didit-sdk-4.0.5.aar",
+          "size": 1954,
+          "sha512": "99dace5b42e8a5a9688e1d9b97722682d6c0211ae87ece363678732994af8ba05bd2e14434824d84ddcd7e2670caa201d1dabb0091420666b93d1d1d98efa7cc",
+          "sha256": "5eb88546d17c4b9eeda35937130745fd4e7acd2f64910bc166b7a824cc101dfb",
+          "sha1": "ee0a4a701c14b1cd1f4c72c1473700b732e5e5b0",
+          "md5": "3eb95e83831bd35ff15bb5d867a8d627"
+        }
+      ]
+    }
+  ]
+}
