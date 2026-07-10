@@ -1,0 +1,118 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "me.didit",
+    "module": "didit-sdk-autodetection",
+    "version": "4.1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.6"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-autodetection-4.1.0.aar",
+          "url": "didit-sdk-autodetection-4.1.0.aar",
+          "size": 13856,
+          "sha512": "91641221fd4d54b7f13ba6a5dd6334e1a7183161d66128827a393a4e2dd6317705cee8f4532e841992d71363a0ec82b64657ffbd13a4d7d18c0d8cf752d8075f",
+          "sha256": "bddf889eb12c902387d5479b29f0d9f9d1d5984e0d4616d2bb93d5724d8e623f",
+          "sha1": "4ac74558fddab5711e1c0deba5b95ac08e4108c3",
+          "md5": "5d8db2ebfbbfabb24eb2f70e7387a3a6"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.10.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "com.google.mediapipe",
+          "module": "tasks-vision",
+          "version": {
+            "requires": "0.10.29"
+          }
+        },
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-autodetection-4.1.0.aar",
+          "url": "didit-sdk-autodetection-4.1.0.aar",
+          "size": 13856,
+          "sha512": "91641221fd4d54b7f13ba6a5dd6334e1a7183161d66128827a393a4e2dd6317705cee8f4532e841992d71363a0ec82b64657ffbd13a4d7d18c0d8cf752d8075f",
+          "sha256": "bddf889eb12c902387d5479b29f0d9f9d1d5984e0d4616d2bb93d5724d8e623f",
+          "sha1": "4ac74558fddab5711e1c0deba5b95ac08e4108c3",
+          "md5": "5d8db2ebfbbfabb24eb2f70e7387a3a6"
+        }
+      ]
+    }
+  ]
+}
