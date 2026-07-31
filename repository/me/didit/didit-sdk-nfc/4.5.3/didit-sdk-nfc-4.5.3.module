@@ -1,0 +1,190 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "me.didit",
+    "module": "didit-sdk-nfc",
+    "version": "4.5.3",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.5.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-nfc-4.5.3.aar",
+          "url": "didit-sdk-nfc-4.5.3.aar",
+          "size": 179202,
+          "sha512": "ae030316dbfbb3782bae84bde2a9244107de3b9d224cf0ad0849ae368b448a7da51e374997eb6d289d882ff8a387989f53eb98b01103e0cafe141fe44dd1f498",
+          "sha256": "2941c254278f041cc2421f0a2ee5575b1ccea03b0d7e06eba6d38d29accc341f",
+          "sha1": "959908f45e1f57377e57f52896b56ec180dbd7b2",
+          "md5": "518c1cb59eb240bfc655084f5bce280e"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.10.1"
+          }
+        },
+        {
+          "group": "androidx.compose",
+          "module": "compose-bom",
+          "version": {
+            "requires": "2024.02.00"
+          },
+          "attributes": {
+            "org.gradle.category": "platform"
+          }
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui"
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui-graphics"
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation"
+        },
+        {
+          "group": "androidx.compose.material3",
+          "module": "material3"
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-icons-core"
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-compose",
+          "version": {
+            "requires": "1.8.2"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.12.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.7.0"
+          }
+        },
+        {
+          "group": "org.jmrtd",
+          "module": "jmrtd",
+          "version": {
+            "requires": "0.8.1"
+          }
+        },
+        {
+          "group": "net.sf.scuba",
+          "module": "scuba-sc-android",
+          "version": {
+            "requires": "0.0.21"
+          }
+        },
+        {
+          "group": "org.bouncycastle",
+          "module": "bcprov-jdk18on",
+          "version": {
+            "requires": "1.80"
+          }
+        },
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.5.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-nfc-4.5.3.aar",
+          "url": "didit-sdk-nfc-4.5.3.aar",
+          "size": 179202,
+          "sha512": "ae030316dbfbb3782bae84bde2a9244107de3b9d224cf0ad0849ae368b448a7da51e374997eb6d289d882ff8a387989f53eb98b01103e0cafe141fe44dd1f498",
+          "sha256": "2941c254278f041cc2421f0a2ee5575b1ccea03b0d7e06eba6d38d29accc341f",
+          "sha1": "959908f45e1f57377e57f52896b56ec180dbd7b2",
+          "md5": "518c1cb59eb240bfc655084f5bce280e"
+        }
+      ]
+    }
+  ]
+}
