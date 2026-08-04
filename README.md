@@ -4,19 +4,19 @@ A lightweight Android SDK for identity verification. Server-driven, minimal conf
 
 ## Requirements
 
-- Android API level 21+ (Android 5.0 Lollipop and above)
+- Android API level 23+ (Android 6.0 Marshmallow and above)
 - Kotlin 1.9+
 - Jetpack Compose (included as a transitive dependency)
 
 ### Feature Availability by API Level
 
-| Feature | API 21-23 | API 24+ |
-|---------|-----------|---------|
+| Feature | API 23 | API 24+ |
+|---------|--------|---------|
 | Document auto-detection (ML) | No (falls back to manual capture) | Yes |
 | Face auto-detection (ML) | No (falls back to manual capture) | Yes |
-| Camera permissions | Install-time (API < 23) / Runtime (API 23+) | Runtime |
+| Camera permissions | Runtime | Runtime |
 
-> **Note:** The SDK gracefully degrades on older devices. ML-based document and face auto-detection require API 24+ (MediaPipe) and fall back to manual capture with a timed button on older devices. All other features work across the full supported range.
+> **Note:** The SDK gracefully degrades on older devices. ML-based document and face auto-detection require API 24+ (MediaPipe) and fall back to manual capture with a timed button on API 23. All other features work across the full supported range.
 
 ## Permissions
 
@@ -67,7 +67,7 @@ Add the SDK dependency to your app's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("me.didit:didit-sdk:4.5.0")
+    implementation("me.didit:didit-sdk:4.5.3")
 }
 ```
 
@@ -75,7 +75,7 @@ Or if using `build.gradle` (Groovy):
 
 ```groovy
 dependencies {
-    implementation "me.didit:didit-sdk:4.5.0"
+    implementation "me.didit:didit-sdk:4.5.3"
 }
 ```
 
