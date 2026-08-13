@@ -118,7 +118,7 @@ The install cost of auto-capture is the MediaPipe native runtime, and it is **pe
 To keep that from multiplying, follow these rules:
 
 1. **Publish an Android App Bundle (AAB).** Google Play then delivers only the device's own architecture (~10 MB installed, roughly 4 MB of compressed download on an arm64 phone) and only the device's language resources. A universal APK instead carries all four architectures — over 40 MB of native libraries — which is the most common cause of "the SDK is huge" measurements.
-2. **If you must distribute a single APK**, restrict architectures in your `build.gradle.kts` — real devices are covered by the two ARM ABIs:
+2. **If you must distribute a single APK** and your audience is ARM phones and tablets, restrict architectures in your `build.gradle.kts`:
 
    ```kotlin
    android {
@@ -127,6 +127,8 @@ To keep that from multiplying, follow these rules:
        }
    }
    ```
+
+   Keep every ABI your users actually run: add `x86_64` if you target Chromebooks or other x86 devices, or publish [per-ABI APK splits](https://developer.android.com/build/configure-apk-splits) so no device loses support.
 
 3. **Enable R8** — `isMinifyEnabled = true` and `isShrinkResources = true` in your release build type (`minifyEnabled true` / `shrinkResources true` in Groovy `build.gradle`). The SDK ships consumer rules, so no extra configuration is needed and unused SDK code is stripped from your build.
 4. **Limit bundled languages** if you do not ship all 48 SDK locales, e.g. `resConfigs("en", "sw")` in `defaultConfig`.
