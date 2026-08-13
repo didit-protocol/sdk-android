@@ -128,7 +128,7 @@ To keep that from multiplying, follow these rules:
    }
    ```
 
-3. **Enable R8** (`minifyEnabled true` + `shrinkResources true`). The SDK ships consumer rules, so no extra configuration is needed and unused SDK code is stripped from your build.
+3. **Enable R8** — `isMinifyEnabled = true` and `isShrinkResources = true` in your release build type (`minifyEnabled true` / `shrinkResources true` in Groovy `build.gradle`). The SDK ships consumer rules, so no extra configuration is needed and unused SDK code is stripped from your build.
 4. **Limit bundled languages** if you do not ship all 48 SDK locales, e.g. `resConfigs("en", "sw")` in `defaultConfig`.
 
 ## Quick Start
