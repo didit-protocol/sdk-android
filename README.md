@@ -82,6 +82,8 @@ dependencies {
 > Starting with **4.0.0** the SDK ships as four separate artifacts
 > (`didit-sdk-core`, `didit-sdk-autodetection`, `didit-sdk-nfc`,
 > `didit-sdk`) so apps only pay the binary cost of features they use.
+> See [SDK Variants and App Size](#sdk-variants-and-app-size) for what each
+> variant costs and how to keep the download small.
 
 ### Step 3: Add packaging exclusion
 
@@ -98,6 +100,38 @@ android {
 ```
 
 That's it! Gradle will automatically resolve all transitive dependencies.
+
+## SDK Variants and App Size
+
+Pick the smallest artifact that covers the features you use:
+
+| Artifact | Auto-capture | NFC | What it adds |
+|----------|--------------|-----|--------------|
+| `didit-sdk-core` | – | – | UI, camera, manual capture (~5 MB of code before R8) |
+| `didit-sdk-autodetection` | ✓ | – | MediaPipe runtime for document/face auto-detection |
+| `didit-sdk-nfc` | – | ✓ | JMRTD passport chip reading |
+| `didit-sdk` | ✓ | ✓ | Everything above |
+
+The ML models used for auto-detection are **downloaded at runtime** and cached — they are never inside your APK.
+The install cost of auto-capture is the MediaPipe native runtime, and it is **per CPU architecture**: ~10.4 MB for `arm64-v8a`, ~6.9 MB for `armeabi-v7a`, ~12.6 MB for `x86_64`, ~13.9 MB for `x86`.
+
+To keep that from multiplying, follow these rules:
+
+1. **Publish an Android App Bundle (AAB).** Google Play then delivers only the device's own architecture (~10 MB installed, roughly 4 MB of compressed download on an arm64 phone) and only the device's language resources. A universal APK instead carries all four architectures — over 40 MB of native libraries — which is the most common cause of "the SDK is huge" measurements.
+2. **If you must distribute a single APK** and your audience is ARM phones and tablets, restrict architectures in your `build.gradle.kts`:
+
+   ```kotlin
+   android {
+       defaultConfig {
+           ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
+       }
+   }
+   ```
+
+   Keep every ABI your users actually run: add `x86_64` if you target Chromebooks or other x86 devices, or publish [per-ABI APK splits](https://developer.android.com/build/configure-apk-splits) so no device loses support.
+
+3. **Enable R8** — `isMinifyEnabled = true` and `isShrinkResources = true` in your release build type (`minifyEnabled true` / `shrinkResources true` in Groovy `build.gradle`). The SDK ships consumer rules, so no extra configuration is needed and unused SDK code is stripped from your build.
+4. **Limit bundled languages** if you do not ship all 48 SDK locales, e.g. `resConfigs("en", "sw")` in `defaultConfig`.
 
 ## Quick Start
 
