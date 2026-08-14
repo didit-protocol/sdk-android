@@ -67,7 +67,7 @@ Add the SDK dependency to your app's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("me.didit:didit-sdk:4.5.3")
+    implementation("me.didit:didit-sdk:4.6.0")
 }
 ```
 
@@ -75,13 +75,14 @@ Or if using `build.gradle` (Groovy):
 
 ```groovy
 dependencies {
-    implementation "me.didit:didit-sdk:4.5.3"
+    implementation "me.didit:didit-sdk:4.6.0"
 }
 ```
 
-> Starting with **4.0.0** the SDK ships as four separate artifacts
+> Starting with **4.0.0** the SDK ships as separate artifacts
 > (`didit-sdk-core`, `didit-sdk-autodetection`, `didit-sdk-nfc`,
-> `didit-sdk`) so apps only pay the binary cost of features they use.
+> `didit-sdk`, plus the optional `didit-sdk-wallet` add-on since **4.6.0**)
+> so apps only pay the binary cost of features they use.
 > See [SDK Variants and App Size](#sdk-variants-and-app-size) for what each
 > variant costs and how to keep the download small.
 
@@ -110,7 +111,12 @@ Pick the smallest artifact that covers the features you use:
 | `didit-sdk-core` | – | – | UI, camera, manual capture (~5 MB of code before R8) |
 | `didit-sdk-autodetection` | ✓ | – | MediaPipe runtime for document/face auto-detection |
 | `didit-sdk-nfc` | – | ✓ | JMRTD passport chip reading |
-| `didit-sdk` | ✓ | ✓ | Everything above |
+| `didit-sdk-wallet` | – | – | Optional add-on: native WalletConnect wallet-signing (since 4.6.0) |
+| `didit-sdk` | ✓ | ✓ | Everything above, wallet add-on included |
+
+Since **4.6.0**, native WalletConnect wallet-signing lives in the optional `me.didit:didit-sdk-wallet` add-on instead of `didit-sdk-core`, which drops the Reown/WalletConnect dependencies (several MB of transitive jars) from every build that does not use them.
+The full `me.didit:didit-sdk` bundle includes the add-on, so its behavior is unchanged.
+If you depend on a slimmer artifact and want wallet-ownership signing to run natively in your app, add `me.didit:didit-sdk-wallet` alongside it; without it the SDK completes wallet ownership through the browser-based flow instead, so the feature keeps working either way.
 
 The ML models used for auto-detection are **downloaded at runtime** and cached — they are never inside your APK.
 The install cost of auto-capture is the MediaPipe native runtime, and it is **per CPU architecture**: ~10.4 MB for `arm64-v8a`, ~6.9 MB for `armeabi-v7a`, ~12.6 MB for `x86_64`, ~13.9 MB for `x86`.
