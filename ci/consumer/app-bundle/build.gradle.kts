@@ -45,21 +45,29 @@ dependencies {
 // The bundled modules other than core are internal-only (loaded reflectively
 // by core), so a broken bundle edge cannot be caught by a compile-time
 // reference. Assert at resolution level instead: every module the didit-sdk
-// bundle promises must arrive on the runtime classpath purely through the
-// bundle's own metadata.
+// bundle promises must be a DIRECT dependency of the didit-sdk component
+// itself - checking the whole resolved graph is not enough, because core
+// also arrives transitively through the other modules' own edges and would
+// mask a dropped direct edge.
 val verifyBundleEdges by tasks.registering {
     val runtimeClasspath = configurations.named("debugRuntimeClasspath")
     inputs.files(runtimeClasspath)
     doLast {
-        val resolved = runtimeClasspath.get()
+        val bundle = runtimeClasspath.get()
             .incoming.resolutionResult.allComponents
-            .mapNotNull { it.moduleVersion }
+            .find { it.moduleVersion?.group == "me.didit" && it.moduleVersion?.name == "didit-sdk" }
+            ?: error("me.didit:didit-sdk did not resolve at all")
+        val direct = bundle.dependencies
+            .filterIsInstance<org.gradle.api.artifacts.result.ResolvedDependencyResult>()
+            .mapNotNull { it.selected.moduleVersion }
             .map { "${it.group}:${it.name}" }
             .toSet()
         val missing = listOf("core", "autodetection", "nfc", "wallet")
             .map { "me.didit:didit-sdk-$it" }
-            .filterNot { it in resolved }
-        require(missing.isEmpty()) { "didit-sdk bundle metadata is missing module edges: $missing" }
+            .filterNot { it in direct }
+        require(missing.isEmpty()) {
+            "didit-sdk bundle metadata is missing direct module edges: $missing (direct edges seen: $direct)"
+        }
     }
 }
 
