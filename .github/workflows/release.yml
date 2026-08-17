@@ -1,0 +1,70 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  github-release:
+    name: Create the GitHub Release from the tag
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      # A pushed tag IS the release: this job keeps the GitHub Releases page
+      # from drifting behind the tags (v4.3.1-v4.6.0 had no Release objects,
+      # because creating them was a manual, optional runbook step). The
+      # artifacts themselves live in repository/ - there is nothing to
+      # publish, only the Release object with generated notes. Fails when the
+      # tag does not match the Maven metadata release version.
+      - name: Verify tag matches Maven metadata, create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+          # The shallow tag-triggered checkout only guarantees the triggering
+          # tag; fetch the full tag namespace explicitly so the Latest
+          # comparison below sees every tag (checkout's fetch-tags does not
+          # guarantee this at fetch-depth 1).
+          git fetch --quiet origin '+refs/tags/*:refs/tags/*'
+          RELEASED=$(sed -n 's:.*<release>\(.*\)</release>.*:\1:p' repository/me/didit/didit-sdk/maven-metadata.xml)
+          if [ "$RELEASED" != "$VERSION" ]; then
+            echo "maven-metadata.xml <release> is $RELEASED but the tag says $VERSION" >&2
+            exit 1
+          fi
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG already exists - nothing to do."
+            exit 0
+          fi
+          # Prerelease versions (any -suffix) are published as prereleases and
+          # never take the Latest badge. Stable versions take Latest only when
+          # they are the highest STABLE v* tag - a rerun of an older tag's
+          # workflow must never steal the badge, and omitting the flag is not
+          # enough (the API defaults make_latest to true). The stable-only
+          # filter is what makes sort -V exact: SemVer prerelease precedence
+          # is the one thing version-sort gets wrong.
+          # Classify prerelease on the part BEFORE any +build metadata:
+          # hyphens are legal inside build metadata (4.8.0+ios-fix is stable).
+          case "${VERSION%%+*}" in
+            *-*)
+              FLAGS="--prerelease --latest=false"
+              ;;
+            *)
+              # Stable = x.y.z with optional +build metadata (legal in Dart
+              # versions); build metadata is ignored for precedence per
+              # SemVer, so the comparison runs on the numeric core.
+              CORE="${VERSION%%+*}"
+              HIGHEST=$(git tag -l 'v*' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+(\+[0-9A-Za-z.-]+)?$' | sed 's/^v//; s/+.*//' | sort -uV | tail -1)
+              LATEST=false
+              if [ "$CORE" = "$HIGHEST" ]; then LATEST=true; fi
+              FLAGS="--latest=$LATEST"
+              ;;
+          esac
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag $FLAGS \
+            --title "$TAG" --generate-notes
