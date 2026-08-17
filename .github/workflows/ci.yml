@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  consumer-build:
+    name: Consumer app builds against the published Maven repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.4'
+
+      # Consumer apps resolve the published artifacts from the repository/
+      # directory of THIS commit (not the network copy), compile against SDK
+      # classes, and package debug APKs:
+      #   app-bundle - ONLY me.didit:didit-sdk on the classpath, with a
+      #     compile-time reference into every bundled module, so a bundle
+      #     metadata file that drops any transitive edge fails instead of
+      #     being masked by another dependency;
+      #   app-standalone - ONE standalone artifact per invocation
+      #     (-PdiditStandaloneArtifact), so each must resolve, compile, and
+      #     package entirely on its own metadata.
+      # Both run twice: once on Gradle module metadata (.module - what AGP
+      # consumers resolve) and once POM-only (-PdiditPomOnlyMetadata - what
+      # Maven and non-Gradle consumers see), so a defect in either metadata
+      # format fails the build. This is the tripwire for the failure class
+      # that otherwise only surfaces in integrators' builds after a release.
+      - name: Build consumer apps (Gradle module metadata)
+        run: |
+          set -euo pipefail
+          gradle -p ci/consumer :app-bundle:assembleDebug
+          for artifact in core nfc autodetection autodetection-play wallet; do
+            gradle -p ci/consumer :app-standalone:assembleDebug -PdiditStandaloneArtifact="$artifact"
+          done
+
+      - name: Build consumer apps (POM metadata only, as non-Gradle consumers resolve)
+        run: |
+          set -euo pipefail
+          gradle -p ci/consumer :app-bundle:assembleDebug -PdiditPomOnlyMetadata
+          for artifact in core nfc autodetection autodetection-play wallet; do
+            gradle -p ci/consumer :app-standalone:assembleDebug -PdiditStandaloneArtifact="$artifact" -PdiditPomOnlyMetadata
+          done
