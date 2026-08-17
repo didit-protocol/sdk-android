@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  github-release:
+    name: Create the GitHub Release from the tag
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      # A pushed tag IS the release: this job keeps the GitHub Releases page
+      # from drifting behind the tags (v4.3.1-v4.6.0 had no Release objects,
+      # because creating them was a manual, optional runbook step). The
+      # artifacts themselves live in repository/ - there is nothing to
+      # publish, only the Release object with generated notes. Fails when the
+      # tag does not match the Maven metadata release version.
+      - name: Verify tag matches Maven metadata, create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+          RELEASED=$(sed -n 's:.*<release>\(.*\)</release>.*:\1:p' repository/me/didit/didit-sdk/maven-metadata.xml)
+          if [ "$RELEASED" != "$VERSION" ]; then
+            echo "maven-metadata.xml <release> is $RELEASED but the tag says $VERSION" >&2
+            exit 1
+          fi
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG already exists - nothing to do."
+            exit 0
+          fi
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --latest \
+            --title "$TAG" --generate-notes
