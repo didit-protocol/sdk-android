@@ -30,16 +30,33 @@ jobs:
         with:
           gradle-version: '8.4'
 
-      # Builds two minimal consumer apps that resolve the published artifacts
-      # from the repository/ directory of THIS commit (not the network copy),
-      # compile against the SDK entry point, and package debug APKs:
-      #   app-bundle - ONLY me.didit:didit-sdk (+ the opt-in -play artifact),
-      #     so a bundle POM that drops a transitive module edge fails here
-      #     instead of being masked by explicit standalone dependencies;
-      #   app-split - the five standalone artifacts without the bundle, so
-      #     each must resolve and compile on its own.
-      # Tripwire for broken or missing AARs, bad POM metadata, and
-      # unresolvable transitive dependencies - the failure class that
-      # otherwise only surfaces in integrators' builds after a release.
-      - name: Build consumer apps
-        run: gradle -p ci/consumer :app-bundle:assembleDebug :app-split:assembleDebug --no-daemon
+      # Consumer apps resolve the published artifacts from the repository/
+      # directory of THIS commit (not the network copy), compile against SDK
+      # classes, and package debug APKs:
+      #   app-bundle - ONLY me.didit:didit-sdk on the classpath, with a
+      #     compile-time reference into every bundled module, so a bundle
+      #     metadata file that drops any transitive edge fails instead of
+      #     being masked by another dependency;
+      #   app-standalone - ONE standalone artifact per invocation
+      #     (-PdiditStandaloneArtifact), so each must resolve, compile, and
+      #     package entirely on its own metadata.
+      # Both run twice: once on Gradle module metadata (.module - what AGP
+      # consumers resolve) and once POM-only (-PdiditPomOnlyMetadata - what
+      # Maven and non-Gradle consumers see), so a defect in either metadata
+      # format fails the build. This is the tripwire for the failure class
+      # that otherwise only surfaces in integrators' builds after a release.
+      - name: Build consumer apps (Gradle module metadata)
+        run: |
+          set -euo pipefail
+          gradle -p ci/consumer :app-bundle:assembleDebug
+          for artifact in core nfc autodetection autodetection-play wallet; do
+            gradle -p ci/consumer :app-standalone:assembleDebug -PdiditStandaloneArtifact="$artifact"
+          done
+
+      - name: Build consumer apps (POM metadata only, as non-Gradle consumers resolve)
+        run: |
+          set -euo pipefail
+          gradle -p ci/consumer :app-bundle:assembleDebug -PdiditPomOnlyMetadata
+          for artifact in core nfc autodetection autodetection-play wallet; do
+            gradle -p ci/consumer :app-standalone:assembleDebug -PdiditStandaloneArtifact="$artifact" -PdiditPomOnlyMetadata
+          done

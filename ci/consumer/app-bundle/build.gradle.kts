@@ -35,12 +35,34 @@ android {
 }
 
 dependencies {
-    // ONLY the bundle (plus the opt-in -play artifact the bundle deliberately
-    // does not pull). The didit-sdk AAR is a pure aggregator with an empty
-    // classes.jar, so compiling Smoke.kt's DiditSdk reference proves the
-    // bundle POM's transitive edges (core/nfc/autodetection/wallet) are
-    // intact. Do NOT add the standalone artifacts here - they would mask a
-    // broken bundle edge (that is what app-split covers separately).
+    // ONLY the bundle - nothing else may sit on this classpath. Any
+    // additional dependency here (even the opt-in -play artifact, which
+    // depends on core itself) would mask a broken bundle edge; -play is
+    // covered by an app-standalone pass instead.
     implementation("me.didit:didit-sdk:$diditSdkVersion")
-    implementation("me.didit:didit-sdk-autodetection-play:$diditSdkVersion")
+}
+
+// The bundled modules other than core are internal-only (loaded reflectively
+// by core), so a broken bundle edge cannot be caught by a compile-time
+// reference. Assert at resolution level instead: every module the didit-sdk
+// bundle promises must arrive on the runtime classpath purely through the
+// bundle's own metadata.
+val verifyBundleEdges by tasks.registering {
+    val runtimeClasspath = configurations.named("debugRuntimeClasspath")
+    inputs.files(runtimeClasspath)
+    doLast {
+        val resolved = runtimeClasspath.get()
+            .incoming.resolutionResult.allComponents
+            .mapNotNull { it.moduleVersion }
+            .map { "${it.group}:${it.name}" }
+            .toSet()
+        val missing = listOf("core", "autodetection", "nfc", "wallet")
+            .map { "me.didit:didit-sdk-$it" }
+            .filterNot { it in resolved }
+        require(missing.isEmpty()) { "didit-sdk bundle metadata is missing module edges: $missing" }
+    }
+}
+
+tasks.matching { it.name == "assembleDebug" }.configureEach {
+    dependsOn(verifyBundleEdges)
 }

@@ -5,12 +5,19 @@ plugins {
 
 val diditSdkVersion: String by rootProject.extra
 
+// Which single standalone artifact to consume, e.g.
+//   gradle :app-standalone:assembleDebug -PdiditStandaloneArtifact=nfc
+// One artifact per build so a missing dependency edge in one artifact can
+// never be masked by another artifact on the same classpath.
+val diditStandaloneArtifact: String =
+    providers.gradleProperty("diditStandaloneArtifact").getOrElse("core")
+
 android {
-    namespace = "me.didit.ciconsumer.split"
+    namespace = "me.didit.ciconsumer.standalone"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "me.didit.ciconsumer.split"
+        applicationId = "me.didit.ciconsumer.standalone"
         minSdk = 23
         targetSdk = 34
         versionCode = 1
@@ -35,12 +42,5 @@ android {
 }
 
 dependencies {
-    // The five standalone artifacts WITHOUT the didit-sdk bundle: each must
-    // resolve, compile, and package on its own POM/AAR, the way slim
-    // integrations consume them.
-    implementation("me.didit:didit-sdk-core:$diditSdkVersion")
-    implementation("me.didit:didit-sdk-nfc:$diditSdkVersion")
-    implementation("me.didit:didit-sdk-autodetection:$diditSdkVersion")
-    implementation("me.didit:didit-sdk-autodetection-play:$diditSdkVersion")
-    implementation("me.didit:didit-sdk-wallet:$diditSdkVersion")
+    implementation("me.didit:didit-sdk-$diditStandaloneArtifact:$diditSdkVersion")
 }
