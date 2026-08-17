@@ -30,11 +30,16 @@ jobs:
         with:
           gradle-version: '8.4'
 
-      # Builds a minimal consumer app that resolves every published artifact
+      # Builds two minimal consumer apps that resolve the published artifacts
       # from the repository/ directory of THIS commit (not the network copy),
-      # compiles against the SDK entry point, and packages a debug APK. This
-      # is the tripwire for broken or missing AARs, bad POM metadata, and
+      # compile against the SDK entry point, and package debug APKs:
+      #   app-bundle - ONLY me.didit:didit-sdk (+ the opt-in -play artifact),
+      #     so a bundle POM that drops a transitive module edge fails here
+      #     instead of being masked by explicit standalone dependencies;
+      #   app-split - the five standalone artifacts without the bundle, so
+      #     each must resolve and compile on its own.
+      # Tripwire for broken or missing AARs, bad POM metadata, and
       # unresolvable transitive dependencies - the failure class that
       # otherwise only surfaces in integrators' builds after a release.
-      - name: Build consumer app
-        run: gradle -p ci/consumer :app:assembleDebug --no-daemon
+      - name: Build consumer apps
+        run: gradle -p ci/consumer :app-bundle:assembleDebug :app-split:assembleDebug --no-daemon

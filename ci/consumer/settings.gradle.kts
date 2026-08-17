@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "didit-sdk-consumer"
-include(":app")
+include(":app-bundle")
+include(":app-split")
