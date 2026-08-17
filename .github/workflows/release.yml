@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       # A pushed tag IS the release: this job keeps the GitHub Releases page
       # from drifting behind the tags (v4.3.1-v4.6.0 had no Release objects,
