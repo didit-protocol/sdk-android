@@ -49,7 +49,9 @@ jobs:
           # enough (the API defaults make_latest to true). The stable-only
           # filter is what makes sort -V exact: SemVer prerelease precedence
           # is the one thing version-sort gets wrong.
-          case "$VERSION" in
+          # Classify prerelease on the part BEFORE any +build metadata:
+          # hyphens are legal inside build metadata (4.8.0+ios-fix is stable).
+          case "${VERSION%%+*}" in
             *-*)
               FLAGS="--prerelease --latest=false"
               ;;
