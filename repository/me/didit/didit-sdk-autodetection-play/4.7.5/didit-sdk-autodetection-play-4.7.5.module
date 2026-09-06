@@ -1,0 +1,118 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "me.didit",
+    "module": "didit-sdk-autodetection-play",
+    "version": "4.7.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.7.5"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-autodetection-play-4.7.5.aar",
+          "url": "didit-sdk-autodetection-play-4.7.5.aar",
+          "size": 57279,
+          "sha512": "06ac46d0d91c0b34431a839f67d55bf79945334ddf8fc7856de0a85039ad61a011aec741b55c3792b8e9213102ad395b4d66a4788a43d6e1edbb040579432884",
+          "sha256": "5c5de39ee7bdf48d15978b612eb05c5f2ea82803fee6c804ec0e3460ec5f8710",
+          "sha1": "36baa43b9fb079dab1586d15bb3c2ee01bf85afd",
+          "md5": "dd3808a3926e9cf624841ce7ced36947"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.10.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "com.google.android.gms",
+          "module": "play-services-tflite-java",
+          "version": {
+            "requires": "16.4.0"
+          }
+        },
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.7.5"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-autodetection-play-4.7.5.aar",
+          "url": "didit-sdk-autodetection-play-4.7.5.aar",
+          "size": 57279,
+          "sha512": "06ac46d0d91c0b34431a839f67d55bf79945334ddf8fc7856de0a85039ad61a011aec741b55c3792b8e9213102ad395b4d66a4788a43d6e1edbb040579432884",
+          "sha256": "5c5de39ee7bdf48d15978b612eb05c5f2ea82803fee6c804ec0e3460ec5f8710",
+          "sha1": "36baa43b9fb079dab1586d15bb3c2ee01bf85afd",
+          "md5": "dd3808a3926e9cf624841ce7ced36947"
+        }
+      ]
+    }
+  ]
+}
