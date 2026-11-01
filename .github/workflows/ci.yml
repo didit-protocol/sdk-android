@@ -28,7 +28,7 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.4'
+          gradle-version: '8.7'
 
       # Consumer apps resolve the published artifacts from the repository/
       # directory of THIS commit (not the network copy), compile against SDK
@@ -49,7 +49,7 @@ jobs:
         run: |
           set -euo pipefail
           gradle -p ci/consumer :app-bundle:assembleDebug
-          for artifact in core nfc autodetection autodetection-play wallet; do
+          for artifact in core nfc autodetection wallet; do
             gradle -p ci/consumer :app-standalone:assembleDebug -PdiditStandaloneArtifact="$artifact"
           done
 
@@ -57,6 +57,6 @@ jobs:
         run: |
           set -euo pipefail
           gradle -p ci/consumer :app-bundle:assembleDebug -PdiditPomOnlyMetadata
-          for artifact in core nfc autodetection autodetection-play wallet; do
+          for artifact in core nfc autodetection wallet; do
             gradle -p ci/consumer :app-standalone:assembleDebug -PdiditStandaloneArtifact="$artifact" -PdiditPomOnlyMetadata
           done

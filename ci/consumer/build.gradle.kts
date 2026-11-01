@@ -1,8 +1,8 @@
 // Versions mirror the producer (didit-protocol/mobile-sdks android/):
-// AGP 8.3.0, Kotlin 1.9.22, Gradle 8.4.
+// AGP 8.6.0, Kotlin 2.1.10, Gradle 8.7 (the documented minimum toolchain).
 plugins {
-    id("com.android.application") version "8.3.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+    id("com.android.application") version "8.6.0" apply false
+    id("org.jetbrains.kotlin.android") version "2.1.10" apply false
 }
 
 // Always test the artifacts this commit actually ships: read the release
