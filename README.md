@@ -113,6 +113,7 @@ Pick the smallest artifact that covers the features you use:
 | `didit-sdk-nfc` | – | ✓ | JMRTD passport chip reading |
 | `didit-sdk-wallet` | – | – | Optional add-on: native WalletConnect wallet-signing (since 4.6.0) |
 | `didit-sdk` | ✓ | ✓ | Everything above, wallet add-on included |
+| `didit-auth` | – | – | End-user authentication (`DiditAuth`), on its own or next to any artifact above |
 
 Since **4.6.0**, native WalletConnect wallet-signing lives in the optional `me.didit:didit-sdk-wallet` add-on instead of `didit-sdk-core`, which drops the Reown/WalletConnect dependencies (several MB of transitive jars) from every build that does not use them.
 The full `me.didit:didit-sdk` bundle includes the add-on, so its behavior is unchanged.
