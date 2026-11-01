@@ -7,12 +7,12 @@ val diditSdkVersion: String by rootProject.extra
 
 android {
     namespace = "me.didit.ciconsumer.bundle"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "me.didit.ciconsumer.bundle"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }

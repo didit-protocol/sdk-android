@@ -28,7 +28,7 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.4'
+          gradle-version: '8.7'
 
       # Consumer apps resolve the published artifacts from the repository/
       # directory of THIS commit (not the network copy), compile against SDK
