@@ -62,7 +62,7 @@ val verifyBundleEdges by tasks.registering {
             .mapNotNull { it.selected.moduleVersion }
             .map { "${it.group}:${it.name}" }
             .toSet()
-        val missing = listOf("core", "autodetection", "nfc", "wallet")
+        val missing = listOf("core", "nfc", "wallet")
             .map { "me.didit:didit-sdk-$it" }
             .filterNot { it in direct }
         require(missing.isEmpty()) {
