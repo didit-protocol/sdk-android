@@ -1,0 +1,76 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "me.didit",
+    "module": "didit-sdk-autodetection",
+    "version": "4.12.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.12.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-autodetection-4.12.0.aar",
+          "url": "didit-sdk-autodetection-4.12.0.aar",
+          "size": 783,
+          "sha512": "c2f7d4d04f5a6f2a175a6efc2dbd4c5e52ffbf3a449ce287cfc5460a5d6631dbc053c9596c204700b0b076d4252c4d8a8a4a26e7de9db6309593f038f7decc7f",
+          "sha256": "549557bbc9648384d3d6b432a39bc217741e7676a130122c671857090076193d",
+          "sha1": "50828b1d27abadfa7075aff4679a44704cdbeacd",
+          "md5": "b7d905a93058856fcb5dae345356d40e"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.12.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-autodetection-4.12.0.aar",
+          "url": "didit-sdk-autodetection-4.12.0.aar",
+          "size": 783,
+          "sha512": "c2f7d4d04f5a6f2a175a6efc2dbd4c5e52ffbf3a449ce287cfc5460a5d6631dbc053c9596c204700b0b076d4252c4d8a8a4a26e7de9db6309593f038f7decc7f",
+          "sha256": "549557bbc9648384d3d6b432a39bc217741e7676a130122c671857090076193d",
+          "sha1": "50828b1d27abadfa7075aff4679a44704cdbeacd",
+          "md5": "b7d905a93058856fcb5dae345356d40e"
+        }
+      ]
+    }
+  ]
+}
