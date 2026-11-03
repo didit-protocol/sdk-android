@@ -1,0 +1,97 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "me.didit",
+    "module": "didit-signals",
+    "version": "4.12.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-signals-4.12.0.aar",
+          "url": "didit-signals-4.12.0.aar",
+          "size": 107500,
+          "sha512": "1afae0f4db88fc89d4cee7c71db4f860699d34ef3ab8d96b83bafdcd8014afdd1b200c95404645edb7b55f4abe2dd6416b656a6bec624de64942f2da69ee1f17",
+          "sha256": "f7196390d721e2ff0bf4102e3d2ac1252b1e2bb124ca20d8c2b54b087ea6acfa",
+          "sha1": "9c0067996a29abd04333b6ce6d71dded592e0061",
+          "md5": "5fe06429158f26397ed9f4f0cb514848"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.12.0"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-signals-4.12.0.aar",
+          "url": "didit-signals-4.12.0.aar",
+          "size": 107500,
+          "sha512": "1afae0f4db88fc89d4cee7c71db4f860699d34ef3ab8d96b83bafdcd8014afdd1b200c95404645edb7b55f4abe2dd6416b656a6bec624de64942f2da69ee1f17",
+          "sha256": "f7196390d721e2ff0bf4102e3d2ac1252b1e2bb124ca20d8c2b54b087ea6acfa",
+          "sha1": "9c0067996a29abd04333b6ce6d71dded592e0061",
+          "md5": "5fe06429158f26397ed9f4f0cb514848"
+        }
+      ]
+    }
+  ]
+}
