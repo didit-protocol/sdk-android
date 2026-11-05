@@ -3,8 +3,8 @@
   <groupId>me.didit</groupId>
   <artifactId>didit-sdk-nfc</artifactId>
   <versioning>
-    <latest>4.12.2</latest>
-    <release>4.12.2</release>
+    <latest>4.13.0</latest>
+    <release>4.13.0</release>
     <versions>
       <version>3.5.5</version>
       <version>3.5.6</version>
@@ -44,7 +44,8 @@
       <version>4.12.0</version>
       <version>4.12.1</version>
       <version>4.12.2</version>
+      <version>4.13.0</version>
     </versions>
-    <lastUpdated>20261104225849</lastUpdated>
+    <lastUpdated>20261105192831</lastUpdated>
   </versioning>
 </metadata>
