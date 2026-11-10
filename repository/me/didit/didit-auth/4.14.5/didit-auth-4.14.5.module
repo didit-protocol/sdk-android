@@ -1,0 +1,132 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "me.didit",
+    "module": "didit-auth",
+    "version": "4.14.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "me.didit",
+          "module": "didit-signals",
+          "version": {
+            "requires": "4.14.5"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-auth-4.14.5.aar",
+          "url": "didit-auth-4.14.5.aar",
+          "size": 78594,
+          "sha512": "945ae9857655259219210aecf0596ab21274aa5f7cdce13c2f3f9f249d727e925bf23702a001de4ded1d94e950f6ad547919c51f396f5aa71d8b6880a07ca7e3",
+          "sha256": "fbcd6629421c1824d07cd8a8b2bd668fe23d4478758fcc3cc34c0493ecbbfb10",
+          "sha1": "a35d1b43280c6bdcd0ad05de844c18aae38967e0",
+          "md5": "020da2f18f77cc3230b7b11764486b03"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.12.0"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "androidx.browser",
+          "module": "browser",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "androidx.credentials",
+          "module": "credentials",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.credentials",
+          "module": "credentials-play-services-auth",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "me.didit",
+          "module": "didit-signals",
+          "version": {
+            "requires": "4.14.5"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-auth-4.14.5.aar",
+          "url": "didit-auth-4.14.5.aar",
+          "size": 78594,
+          "sha512": "945ae9857655259219210aecf0596ab21274aa5f7cdce13c2f3f9f249d727e925bf23702a001de4ded1d94e950f6ad547919c51f396f5aa71d8b6880a07ca7e3",
+          "sha256": "fbcd6629421c1824d07cd8a8b2bd668fe23d4478758fcc3cc34c0493ecbbfb10",
+          "sha1": "a35d1b43280c6bdcd0ad05de844c18aae38967e0",
+          "md5": "020da2f18f77cc3230b7b11764486b03"
+        }
+      ]
+    }
+  ]
+}
