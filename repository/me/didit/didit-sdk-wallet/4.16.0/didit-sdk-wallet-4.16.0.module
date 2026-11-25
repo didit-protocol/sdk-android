@@ -1,0 +1,202 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "me.didit",
+    "module": "didit-sdk-wallet",
+    "version": "4.16.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.16.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-wallet-4.16.0.aar",
+          "url": "didit-sdk-wallet-4.16.0.aar",
+          "size": 618235,
+          "sha512": "d386419907bf7f6e50956cac14bbf0356f8f2d3a4704ba5d61b19d5beeb6560c2bcc33a1c39b57bbd2e5a99b52348f4d1ec8b9ed3fec88218434d836ac8317f0",
+          "sha256": "0432b11cd54bff1d1005b9e9756290eb5324e6a14978ad6febba2af3a4a5b0b4",
+          "sha1": "a3aec555576dd0113033e4b21ee1ac31d13a04fb",
+          "md5": "ad6f60e19a62739f172ab77dca0b3366"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.10.1"
+          }
+        },
+        {
+          "group": "androidx.compose",
+          "module": "compose-bom",
+          "version": {
+            "requires": "2025.02.00"
+          },
+          "attributes": {
+            "org.gradle.category": "platform"
+          }
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui"
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui-graphics"
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation"
+        },
+        {
+          "group": "androidx.compose.material3",
+          "module": "material3"
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-icons-core"
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-compose",
+          "version": {
+            "requires": "1.8.2"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.12.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "com.reown",
+          "module": "android-bom",
+          "version": {
+            "requires": "1.4.1"
+          },
+          "attributes": {
+            "org.gradle.category": "platform"
+          },
+          "endorseStrictVersions": true
+        },
+        {
+          "group": "com.reown",
+          "module": "android-core"
+        },
+        {
+          "group": "com.reown",
+          "module": "appkit"
+        },
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-compose",
+          "version": {
+            "requires": "2.8.0"
+          }
+        },
+        {
+          "group": "com.google.accompanist",
+          "module": "accompanist-navigation-material",
+          "version": {
+            "requires": "0.34.0"
+          }
+        },
+        {
+          "group": "com.google.zxing",
+          "module": "core",
+          "version": {
+            "requires": "3.5.1"
+          }
+        },
+        {
+          "group": "me.didit",
+          "module": "didit-sdk-core",
+          "version": {
+            "requires": "4.16.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "didit-sdk-wallet-4.16.0.aar",
+          "url": "didit-sdk-wallet-4.16.0.aar",
+          "size": 618235,
+          "sha512": "d386419907bf7f6e50956cac14bbf0356f8f2d3a4704ba5d61b19d5beeb6560c2bcc33a1c39b57bbd2e5a99b52348f4d1ec8b9ed3fec88218434d836ac8317f0",
+          "sha256": "0432b11cd54bff1d1005b9e9756290eb5324e6a14978ad6febba2af3a4a5b0b4",
+          "sha1": "a3aec555576dd0113033e4b21ee1ac31d13a04fb",
+          "md5": "ad6f60e19a62739f172ab77dca0b3366"
+        }
+      ]
+    }
+  ]
+}
