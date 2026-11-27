@@ -121,7 +121,7 @@ Pick the smallest artifact that covers the features you use:
 | Artifact | Auto-capture | NFC | What it adds |
 |----------|--------------|-----|--------------|
 | `didit-sdk-core` | ✓ | – | UI, camera, manual and automatic capture; includes the auto-detection detectors and their small native library (~0.2 MB per CPU architecture) |
-| `didit-sdk-autodetection` | – | – | Deprecated, empty transition artifact. Not needed for auto-capture; safe to remove from your dependencies |
+| `didit-sdk-autodetection` | – | – | Deprecated, empty transition artifact that depends on `didit-sdk-core`. Replace it with `didit-sdk-core` if it is your only SDK dependency; remove it only when another dependency (such as `didit-sdk` or `didit-sdk-core`) already supplies core |
 | `didit-sdk-nfc` | – | ✓ | JMRTD passport chip reading |
 | `didit-sdk-wallet` | – | – | Optional add-on: native WalletConnect wallet-signing (since 4.6.0) |
 | `didit-sdk` | ✓ | ✓ | Everything above (except the deprecated empty artifact), wallet add-on included |
@@ -131,7 +131,7 @@ Since **4.6.0**, native WalletConnect wallet-signing lives in the optional `me.d
 The full `me.didit:didit-sdk` bundle includes the add-on, so its behavior is unchanged.
 If you depend on a slimmer artifact and want wallet-ownership signing to run natively in your app, add `me.didit:didit-sdk-wallet` alongside it; without it the SDK completes wallet ownership through the browser-based flow instead, so the feature keeps working either way.
 
-Auto-capture is included in `didit-sdk-core` since 4.16.1: you do not need `didit-sdk-autodetection` to get it, and it no longer pulls in a MediaPipe runtime.
+Auto-capture is included in `didit-sdk-core` since 4.11.0: you do not need `didit-sdk-autodetection` to get it, and it no longer pulls in a MediaPipe runtime.
 The detectors ship with a small native library per CPU architecture (about 0.2 MB each), so auto-capture adds very little to your install size.
 Auto-detection models, where used, are **downloaded at runtime** and cached - they are never inside your APK.
 
