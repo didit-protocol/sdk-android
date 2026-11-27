@@ -5,18 +5,18 @@ A lightweight Android SDK for identity verification. Server-driven, minimal conf
 ## Requirements
 
 - Android API level 23+ (Android 6.0 Marshmallow and above)
-- Kotlin 1.9+
+- Kotlin 2.1+ (the 4.16.1 libraries are compiled with Kotlin 2.1, which Kotlin 1.9 compilers cannot read)
 - Jetpack Compose (included as a transitive dependency)
 
 ### Feature Availability by API Level
 
 | Feature | API 23 | API 24+ |
 |---------|--------|---------|
-| Document auto-detection (ML) | No (falls back to manual capture) | Yes |
-| Face auto-detection (ML) | No (falls back to manual capture) | Yes |
+| Document auto-detection | No (falls back to manual capture) | Yes |
+| Face auto-detection | No (falls back to manual capture) | Yes |
 | Camera permissions | Runtime | Runtime |
 
-> **Note:** The SDK gracefully degrades on older devices. ML-based document and face auto-detection require API 24+ (MediaPipe) and fall back to manual capture with a timed button on API 23. All other features work across the full supported range.
+> **Note:** The SDK gracefully degrades on older devices. Document and face auto-detection require API 24+ and fall back to manual capture with a timed button on API 23. All other features work across the full supported range.
 
 ## Permissions
 
@@ -27,7 +27,19 @@ The SDK requires the following permissions. These are declared in the SDK's `And
 | `INTERNET` | Network access for API communication |
 | `ACCESS_NETWORK_STATE` | Detect network availability |
 | `CAMERA` | Document scanning and face verification |
+| `RECORD_AUDIO` | Microphone access for steps that record audio |
+| `VIBRATE` | Haptic feedback |
+| `ACCESS_COARSE_LOCATION` | Approximate location for geolocation steps |
+| `ACCESS_FINE_LOCATION` | Precise location for geolocation steps |
 | `NFC` | Read NFC chips in passports/ID cards |
+
+### Manifest declarations versus runtime prompts
+
+Every permission above except `NFC` is a manifest declaration merged into your app by `didit-sdk-core`, so it is present for every consumer of the `didit-sdk` bundle or of `didit-sdk-core` directly. `NFC` is merged by `didit-sdk-nfc`, which the `didit-sdk` bundle includes.
+This includes `ACCESS_COARSE_LOCATION` and `ACCESS_FINE_LOCATION`, which appear in your merged manifest and in Play Console permission declarations even if you never use a geolocation step.
+A declaration alone never shows a prompt to the end user.
+The runtime permission prompt for location only appears when a verification session runs a geolocation step; camera, microphone and location prompts are each requested only when the step that needs them runs.
+If your app must not declare a permission, remove it in your own manifest with `tools:node="remove"`, and expect the matching step to be unavailable.
 
 ### Camera and NFC Features
 
@@ -80,7 +92,7 @@ dependencies {
 ```
 
 > Starting with **4.0.0** the SDK ships as separate artifacts
-> (`didit-sdk-core`, `didit-sdk-autodetection`, `didit-sdk-nfc`,
+> (`didit-sdk-core`, `didit-sdk-nfc`,
 > `didit-sdk`, plus the optional `didit-sdk-wallet` add-on since **4.6.0**)
 > so apps only pay the binary cost of features they use.
 > See [SDK Variants and App Size](#sdk-variants-and-app-size) for what each
@@ -108,23 +120,24 @@ Pick the smallest artifact that covers the features you use:
 
 | Artifact | Auto-capture | NFC | What it adds |
 |----------|--------------|-----|--------------|
-| `didit-sdk-core` | – | – | UI, camera, manual capture (~5 MB of code before R8) |
-| `didit-sdk-autodetection` | ✓ | – | MediaPipe runtime for document/face auto-detection |
+| `didit-sdk-core` | ✓ | – | UI, camera, manual and automatic capture; includes the auto-detection detectors and their small native library (~0.2 MB per CPU architecture) |
+| `didit-sdk-autodetection` | – | – | Deprecated, empty transition artifact. Not needed for auto-capture; safe to remove from your dependencies |
 | `didit-sdk-nfc` | – | ✓ | JMRTD passport chip reading |
 | `didit-sdk-wallet` | – | – | Optional add-on: native WalletConnect wallet-signing (since 4.6.0) |
-| `didit-sdk` | ✓ | ✓ | Everything above, wallet add-on included |
+| `didit-sdk` | ✓ | ✓ | Everything above (except the deprecated empty artifact), wallet add-on included |
 | `didit-auth` | – | – | End-user authentication (`DiditAuth`), on its own or next to any artifact above |
 
 Since **4.6.0**, native WalletConnect wallet-signing lives in the optional `me.didit:didit-sdk-wallet` add-on instead of `didit-sdk-core`, which drops the Reown/WalletConnect dependencies (several MB of transitive jars) from every build that does not use them.
 The full `me.didit:didit-sdk` bundle includes the add-on, so its behavior is unchanged.
 If you depend on a slimmer artifact and want wallet-ownership signing to run natively in your app, add `me.didit:didit-sdk-wallet` alongside it; without it the SDK completes wallet ownership through the browser-based flow instead, so the feature keeps working either way.
 
-The ML models used for auto-detection are **downloaded at runtime** and cached — they are never inside your APK.
-The install cost of auto-capture is the MediaPipe native runtime, and it is **per CPU architecture**: ~10.4 MB for `arm64-v8a`, ~6.9 MB for `armeabi-v7a`, ~12.6 MB for `x86_64`, ~13.9 MB for `x86`.
+Auto-capture is included in `didit-sdk-core` since 4.16.1: you do not need `didit-sdk-autodetection` to get it, and it no longer pulls in a MediaPipe runtime.
+The detectors ship with a small native library per CPU architecture (about 0.2 MB each), so auto-capture adds very little to your install size.
+Auto-detection models, where used, are **downloaded at runtime** and cached - they are never inside your APK.
 
-To keep that from multiplying, follow these rules:
+Native libraries are still **per CPU architecture**, and a few rules keep your build small:
 
-1. **Publish an Android App Bundle (AAB).** Google Play then delivers only the device's own architecture (~10 MB installed, roughly 4 MB of compressed download on an arm64 phone) and only the device's language resources. A universal APK instead carries all four architectures — over 40 MB of native libraries — which is the most common cause of "the SDK is huge" measurements.
+1. **Publish an Android App Bundle (AAB).** Google Play then delivers only the device's own architecture and only the device's language resources. A universal APK instead carries the native libraries of every architecture.
 2. **If you must distribute a single APK** and your audience is ARM phones and tablets, restrict architectures in your `build.gradle.kts`:
 
    ```kotlin
